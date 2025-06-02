@@ -10,7 +10,14 @@ import {
   Platform,
 } from 'react-native';
 
-// Modular InputField Component
+import {
+  baseWrapper,
+  baseLabel,
+  baseContainer,
+  baseIcon,
+  baseInput,
+} from './styles/inputStyles'; // Adjust the path as needed
+
 const InputField = ({
   label, // Text label displayed above the input
   icon, // Optional icon source
@@ -31,25 +38,23 @@ const InputField = ({
   return (
     <Wrapper behavior={behavior}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className='my-2 w-full'>
+        <View className={`${baseWrapper}`}>
           {label && (
             <Text
-              className={`text-lg mb-3 ${labelStyle}`}
+              className={`${baseLabel} ${labelStyle}`}
               style={{ fontFamily }}
             >
               {label}
             </Text>
           )}
-          <View
-            className={`flex flex-row justify-start items-center relative bg-neutral-100 rounded-full border border-neutral-100 focus:border-primary-500 ${containerStyle}`}
-          >
+          <View className={`${baseContainer} ${containerStyle}`}>
             {icon && (
               <TouchableOpacity disabled={!onIconPress} onPress={onIconPress}>
-                <Image source={icon} className={`w-6 h-6 ml-4 ${iconStyle}`} />
+                <Image source={icon} className={`${baseIcon} ${iconStyle}`} />
               </TouchableOpacity>
             )}
             <TextInput
-              className={`rounded-full p-4 text-[15px] flex-1 text-left ${inputStyle}`}
+              className={`${baseInput} ${inputStyle}`}
               style={{ fontFamily }}
               secureTextEntry={secureTextEntry}
               {...props}

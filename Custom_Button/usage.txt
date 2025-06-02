@@ -1,0 +1,71 @@
+import React from 'react';
+import { View } from 'react-native';
+import CustomButton from '@/components/CustomButton'; // adjust path as needed
+import { AntDesign, Feather } from '@expo/vector-icons';
+
+const ExampleScreen = () => {
+  const handlePress = () => {
+    console.log('Button Pressed!');
+  };
+
+  return (
+    <View className="flex-1 justify-center items-center px-6 bg-white space-y-4">
+
+      {/* Primary Button with default text styling */}
+      <CustomButton
+        title="Continue"
+        onPress={handlePress}
+      />
+
+      {/* Secondary button with icon on the left and custom font */}
+      <CustomButton
+        title="Sign In with Google"
+        onPress={handlePress}
+        bgVariant="secondary"
+        textVariant="primary"
+        fontFamily="Jakarta-Bold"
+        IconLeft={() => <AntDesign name="google" size={20} color="white" />}
+      />
+
+      {/* Outline button with right icon and custom text size */}
+      <CustomButton
+        title="Next"
+        onPress={handlePress}
+        bgVariant="outline"
+        textVariant="default"
+        textSize="text-base"
+        IconRight={() => <Feather name="arrow-right" size={16} color="black" />}
+        className="border-primary-500"
+        textStyle={{ letterSpacing: 1 }}
+      />
+
+      {/* Disabled success button */}
+      <CustomButton
+        title="Success"
+        bgVariant="success"
+        textVariant="secondary"
+        disabled
+      />
+    </View>
+  );
+};
+
+export default ExampleScreen;
+
+
+//Props Demonstrated
+| **Prop**      | **Description**                                                                          |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| `onPress`     | Function called when the button is pressed                                               |
+| `title`       | Text displayed inside the button                                                         |
+| `bgVariant`   | Changes background style (`primary`, `secondary`, `danger`, `success`, `outline`)        |
+| `textVariant` | Changes text color (`default`, `primary`, `secondary`, `danger`, `success`)              |
+| `fontFamily`  | Applies a custom font to the button text (e.g., `'Jakarta-Bold'`)                        |
+| `textSize`    | Tailwind text size class (e.g., `text-lg`, `text-base`)                                  |
+| `textWeight`  | Tailwind font weight class (e.g., `font-bold`, `font-medium`)                            |
+| `IconLeft`    | Adds a custom React component (icon) to the **left** of the button text                  |
+| `IconRight`   | Adds a custom React component (icon) to the **right** of the button text                 |
+| `className`   | Additional Tailwind utility classes for the button container                             |
+| `textStyle`   | Inline style object applied to the `<Text>` component inside the button                  |
+| `disabled`    | Disables the button and adds visual feedback (e.g., `opacity-50`)                        |
+| `...props`    | Any additional props passed to `TouchableOpacity` (e.g., `testID`, `accessibilityLabel`) |

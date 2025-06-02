@@ -1,0 +1,64 @@
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import InputField from '@/components/InputField'; // Adjust the path as needed
+import { Feather } from '@expo/vector-icons';
+
+const LoginScreen = () => {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <View className="flex-1 justify-center px-6 bg-white">
+
+      {/* Email Field */}
+      <InputField
+        label="Email Address"
+        placeholder="you@example.com"
+        value={form.email}
+        onChangeText={(text) => setForm({ ...form, email: text })}
+        keyboardType="email-address"
+        autoCapitalize="none"
+        fontFamily="Jakarta-Regular"
+        labelStyle="text-neutral-700"
+        inputStyle="text-neutral-900"
+        containerStyle="bg-white border border-neutral-300"
+      />
+
+      {/* Password Field with icon toggle */}
+      <InputField
+        label="Password"
+        placeholder="Enter your password"
+        value={form.password}
+        onChangeText={(text) => setForm({ ...form, password: text })}
+        secureTextEntry={!showPassword}
+        icon={showPassword ? require('@/assets/icons/eye-off.png') : require('@/assets/icons/eye.png')}
+        onIconPress={() => setShowPassword(!showPassword)}
+        fontFamily="Jakarta-Regular"
+        labelStyle="text-neutral-700"
+        inputStyle="text-neutral-900"
+        containerStyle="bg-white border border-neutral-300 mt-4"
+        iconStyle="tint-black"
+      />
+
+    </View>
+  );
+};
+
+export default LoginScreen;
+
+
+//Props Demonstrated
+| Prop                                                      | Purpose                                                 |
+| --------------------------------------------------------- | ------------------------------------------------------- |
+| `label`                                                   | Renders a heading above the input                       |
+| `icon`                                                    | Shows an icon inside the input field (e.g., toggle eye) |
+| `onIconPress`                                             | Adds interactivity to the icon                          |
+| `secureTextEntry`                                         | Hides password characters                               |
+| `keyboardType`                                            | Optimizes keyboard for email input                      |
+| `fontFamily`                                              | Applies a custom font                                   |
+| `labelStyle`, `inputStyle`, `containerStyle`, `iconStyle` | Extend Tailwind styles                                  |
+| `autoCapitalize`                                          | Ensures email input stays lowercase                     |
